@@ -1,0 +1,23 @@
+function getIndexToIns(arr, num) {
+  // just add the number to the array as we're going to sort it anyway and then get indexOf at the end.
+  // by adding it to the start of the array and using bubble sort (or any other stable sort) you ensure that the position of the number is always at the lowest index even if they are the same value.
+  arr.splice(0,0,num);
+  // use bubble sort in order to sort the array
+  let temp;
+  for (let i=0;i<arr.length;i++){
+    for (let j=0;j<arr.length-1;j++){
+      if (arr[j]>arr[j+1]){
+        temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1]=temp;
+      }
+    }
+    console.log("the larger elements have been swapped once" + arr);
+  }
+  console.log ("all the elements of the array have been swapped" + arr)
+  //use indexof to get the index of the numbet which is then sorted.
+  num = arr.indexOf(num);
+    return num;
+}
+
+getIndexToIns([40, 60], 50);
