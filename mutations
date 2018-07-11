@@ -1,0 +1,14 @@
+function mutation(arr) {
+// the .indexOf() method cannot be made case insensitive so i first converted both of the strings to uppercase in order to avoid that problem.
+  let str1 = arr[0].toUpperCase();
+  let str2 = arr[1].toUpperCase();
+    // use the split method to split the word into the individual characters. make sure there is no space between the inverted commas otherwise it will only split when it encounters a space in the string.
+  let split = str2.split("");
+  for (let i=0;i<split.length;i++){
+    if (str1.indexOf(split[i])=== -1)
+    return false;
+  }
+  return true;
+}
+
+mutation(["hello", "hey"]);
