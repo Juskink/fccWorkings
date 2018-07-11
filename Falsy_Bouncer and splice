@@ -1,0 +1,15 @@
+function bouncer(arr) {
+  // be careful when using splice on arrays as the length of the array will constantly change.
+  for (let i=0;i<arr.length;i++){
+    // coercing the elements of the array into booleans
+    let bool = Boolean(arr[i]);
+    if(bool != true){
+      arr.splice(i,1);
+      //decrementing i as the array length has now been reduced by one after removing one of the elements of the array with the splicing method.
+      i--;
+    }
+  }
+  return arr;
+}
+
+bouncer([7, "ate", "", false, 9]);
