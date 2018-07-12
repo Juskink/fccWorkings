@@ -1,0 +1,15 @@
+function chunkArrayInGroups(arr, size) {
+  // note be careful in console logs when using the "+ " as JS will convert an array to a string!!!!!
+  let multi = [];
+  let i = 0;
+  while (i+size<=arr.length){
+  console.log("this is the original array length " + arr.length);
+  // slice out a part of the array the from idex i to (but not including) index i+size. 
+ let subArr = arr.slice(i,i+size)
+ console.log( subArr);
+ // use the push method to add the arrays to the existing array. 
+  multi.push(subArr);
+  console.log( multi);
+  i = i + size;
+  console.log("this is the incremented count " + i);
+  }
