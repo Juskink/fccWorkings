@@ -1,15 +1,31 @@
 function chunkArrayInGroups(arr, size) {
-  // note be careful in console logs when using the "+ " as JS will convert an array to a string!!!!!
+  // note: be careful in console.logs/and other areas when using the "+ " as JS will convert an array to a string!!!!!
   let multi = [];
+  let subArr = [];
   let i = 0;
-  while (i+size<=arr.length){
+  //condition is most important as array will be changed each time by splice. use array.length !=0 instead of null as an empty array is NOT "null"
+  while (arr.length != 0){
   console.log("this is the original array length " + arr.length);
-  // slice out a part of the array the from idex i to (but not including) index i+size. 
- let subArr = arr.slice(i,i+size)
- console.log( subArr);
- // use the push method to add the arrays to the existing array. 
+
+  if (size <= arr.length){
+          // splice out a part of the array from index i to (but not including) index i+size. As splice removes the array from the front of the array i used "0" as the start point all the time.
+        subArr = arr.splice(0,size);
+      }else {
+        // if the size of the array is smaller than size then it creates an array of the size of the rest of the array.
+        subArr = arr.splice(0,arr.length);
+  }
+
+ // use the push method to add the arrays to the existing empty array. 
   multi.push(subArr);
-  console.log( multi);
+  
+  console.log("this is the multidimensional array",multi);
   i = i + size;
   console.log("this is the incremented count " + i);
   }
+ 
+    
+  
+  return multi;
+}
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
