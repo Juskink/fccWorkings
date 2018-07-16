@@ -1,0 +1,40 @@
+// the global variable
+var bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+/* This function should add a book to the list and return the list */
+// New parameters should come before the bookName one
+
+// Add your code below this line
+
+function add (bookList,bookName) {
+  // a new array has to be created so that there is not just a reference to the same object.(array is an object).
+  // if you write var list = bookList, then you just just reference the same object.
+  var newList = bookList.slice();
+  // once you have created a new object you can do what you like to it within the function scope.
+  newList.push(bookName);
+  return newList;
+  
+  // Add your code above this line
+}
+
+/* This function should remove a book from the list and return the list */
+// New parameters should come before the bookName one
+
+// Add your code below this line
+function remove (bookList,bookName) {
+  var newList = bookList.slice();
+  var position = newList.indexOf(bookName);
+    if (position >= 0) {
+        newList.splice(position,1);
+        return newList;
+        // Add your code above this line
+    }
+}
+
+var newBookList = add(bookList, 'A Brief History of Time');
+console.log(newBookList, "this is the new booklist");
+var newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
+console.log(newerBookList, "this is the newerbooklist");
+var newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
+console.log(newestBookList, "the newest booklist")
+console.log(bookList);
