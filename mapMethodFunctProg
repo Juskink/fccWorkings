@@ -114,12 +114,19 @@ var watchList = [
 
 // Add your code below this line
 
-var rating = watchList.map((obj,index,watchList) => {
-  return {
-    "title":watchList[index].Title,
-    "rating":watchList[index].imdbRating
+var rating = watchList.map((value,index,watchList) => {
+  // for each element in the array "watchList" return the following.
+  return{
+    // an object with the properties title and rating. 
+    // which are made up of the value of the property "Title" and "imdbRating" of each of the different objects contained within the watchList array.
+    "title":watchList[index].Title ,
+    "rating": watchList[index].imdbRating
+
   }
+
 });
+
+
 
 // Add your code above this line
 
