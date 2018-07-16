@@ -1,0 +1,22 @@
+// the global Array
+var s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback){
+  var newArray = [];
+  // Add your code below this line
+  // use the this element when creating a function of an array/object
+  for (let i=0;i<this.length;i++){
+    // the callback argument is a function itself which takes itself an argument.
+    let returnedItem = callback(this[i]);
+    newArray.push(returnedItem);
+    console.log(newArray);
+    
+  }
+  // Add your code above this line
+  return newArray;
+
+};
+
+var new_s = s.myMap(function(item){
+  return item * 2;
+});
