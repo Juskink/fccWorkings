@@ -4,8 +4,11 @@ var s = [23, 65, 98, 5];
 Array.prototype.myFilter = function(callback){
   var newArray = [];
   // Add your code below this line
+  // loop over the array with a for loop.The "this" keyword is used to represent the array on which the filter prototype is working.
   for(let i =0;i<this.length;i++){
+    // check the result of the callback function for each of the index values
     if(callback(this[i])===true){
+      // if the value passes the test push it onto the end of the new array.
       newArray.push(this[i]);
     }
     
