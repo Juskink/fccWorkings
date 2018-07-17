@@ -1,0 +1,18 @@
+function destroyer(arr) {
+  // get the initial array
+  var initialArray = arguments[0];
+  // set the variable
+  var remainingArgs = [];
+  // create a new array with the arguments starting at index 1.(skip the initial array)
+  for(let i=1;i<arguments.length;i++){
+    remainingArgs.push(arguments[i]);
+  }
+  console.log(remainingArgs);
+  var filteredArray = initialArray.filter(function(value){
+    return !(remainingArgs.includes(value));
+  });
+  console.log(filteredArray);
+  return filteredArray;
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);
