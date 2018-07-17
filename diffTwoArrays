@@ -1,3 +1,29 @@
+******* Optimized 2nd attempt *******
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  function general (array1,array2) {
+      for (let i=0;i<array2.length;i++){
+    // if the ith index of array 2 matches one of the values in array return true.
+        var check = array1.some(function(value){
+          return array2[i]===value;
+        });
+        // if it returns false add it to the new array.
+        if (check == false){
+          newArr.push(array2[i]);
+        }   
+
+      }
+  }
+  general(arr1,arr2);
+  general(arr2,arr1);
+  return newArr;
+}
+
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+
+
+********* 1st try ************
+
 function diffArray(arr1, arr2) {
   var newArr = [];
   // use .filter() or/and .every()
@@ -24,10 +50,6 @@ function diffArray(arr1, arr2) {
       newArr.push(arr1[j]);
     }
   }
-
-
-
-
 
   console.log(newArr)  
   return newArr;
