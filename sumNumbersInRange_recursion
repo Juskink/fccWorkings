@@ -1,0 +1,22 @@
+function sumAll(arr) {
+  var total = 0;
+  if(arr[0]>arr[1]){
+    let temp = arr[0];
+    arr[0]= arr[1];
+    arr[1]= temp;
+    }
+
+  function recursion(num){
+    console.log(num);
+   if (num === (arr[0]-1)){
+    return num=0;
+  }
+    num += recursion(num-1);
+  
+  return num;
+  
+}
+
+  
+  return recursion(arr[1]);
+}
