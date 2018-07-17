@@ -1,0 +1,36 @@
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  // use .filter() or/and .every()
+  //loop  through array 2
+  for (let i=0;i<arr2.length;i++){
+    // if the ith index of array 2 matches one of the values in array return true.
+    var check = arr1.some(function(value){
+      return arr2[i]===value;
+    });
+    // if it returns false add it to the new array.
+    if (check == false){
+      newArr.push(arr2[i]);
+    }
+
+  }
+
+  for (let j=0;j<arr1.length;j++){
+    // if the jth index of array 1 matches one of the values in array return true.
+    var check = arr2.some(function(value){
+      return arr1[j]===value;
+    });
+    // if it returns false add it to the new array.
+    if (check == false){
+      newArr.push(arr1[j]);
+    }
+  }
+
+
+
+
+
+  console.log(newArr)  
+  return newArr;
+}
+
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
