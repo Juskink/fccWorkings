@@ -1,0 +1,8 @@
+
+function spinalCase(str) {
+ // split the string into an array at a whitespace, a underscore, or the lookahead where there is a capital letter.
+ // then join the array with the "-" and convert it to lowercase
+  return str.split(/\s|(?=[A-Z])|_/).join('-').toLowerCase();
+}
+
+spinalCase('This Is Spinal Tap');
