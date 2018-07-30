@@ -2,6 +2,7 @@ function myReplace(str, before, after) {
   // if the first letter of the before is a capital
    if(before[0].match(/[A-Z]/)){
     // then replace the first letter with uppercase and slice on the remaining part of the string from index 1.
+    // strings are immutable so we have to create a whole new one. We can't just change after[0].!!!!
     after = after.charAt(0).toUpperCase() + after.slice(1);
     console.log(after);
   }
