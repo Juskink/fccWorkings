@@ -1,0 +1,19 @@
+function myReplace(str, before, after) {
+  // if the first letter of the before is a capital
+   if(before[0].match(/[A-Z]/)){
+    // then replace the first letter with uppercase and slice on the remaining part of the string from index 1.
+    after = after.charAt(0).toUpperCase() + after.slice(1);
+    console.log(after);
+  }
+  // split the string into an array at whitespace
+ let newArr = str.split(" ");
+ // get the position of the word to be replaced
+  let position = newArr.indexOf(before);
+// then switch the words in the array and join the array back up into a string.
+ newArr[position] = after;
+  str = newArr.join(" ");
+  console.log(str);
+  return str;
+}
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
