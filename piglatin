@@ -1,0 +1,18 @@
+function translatePigLatin(str) {
+  // this checks if the first letter is a vowel and just concatanates "way"
+ if(/^[aeiou]/.test(str)) {
+   let newArr = str.concat("way");
+   return newArr;
+ }else{
+ // this splits at the vowel and captures the rest of the string after.
+//https://stackoverflow.com/questions/28228435/how-does-this-regexp-split-on-the-first-vowel good explanation
+  let newArr = str.split(/([aeiou].*)/)
+  // the array is then reversed, ie the portion before the vowel is sent to the end and the portion including the vowel is brought to the start.
+  // "ay" is then added to the end of the array. the array is then joined to a string and any whitespace is removed.
+  newArr = newArr.reverse().concat("ay").join("").trim();
+  console.log(newArr);
+  return newArr;}
+  
+}
+
+translatePigLatin("consonant");
