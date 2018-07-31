@@ -1,0 +1,28 @@
+function pairElement(str) {
+// create an array of characters from the string
+let newArr = str.split("");
+//console.log(newArr);
+// use the map function to make every value in the array itself into another array.
+// then push the required elements onto those arrays depending on certain conditions.
+let arrOfArr = newArr.map((value) => {
+ let arr = [value];
+ if (value === "G"){
+   arr.push("C");
+ } else if(value === "C"){
+   arr.push("G");
+ } else if(value === "T"){
+   arr.push("A");
+}else if(value === "A"){
+   arr.push("T")
+}
+  return arr;
+
+
+});
+
+console.log(arrOfArr);
+
+  return arrOfArr;
+}
+
+pairElement("GCG");
