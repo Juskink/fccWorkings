@@ -1,0 +1,19 @@
+function fearNotLetter(str) {
+  // the string is split up into a char array
+  let missingList = str.split("");
+  // an array of the chars of the whole alphabet is created
+  let totalList = "abcdefghijklmnopqrstuvwxyz".split("");
+  // the index of the start of the list with the missing character is located within the entire alphabet
+  let index = totalList.indexOf(missingList[0]);
+  // a new array is created with a slice of the whole alphabet ensuring that the second argument of slice is an index and not an amount
+  let completedList= totalList.slice(index,(index+missingList.length+1));
+  console.log(completedList);
+  // the misssing item is then filtered out using the filter function and the negative of the includes() method.
+  var missingLetter = completedList.filter((item) => {
+  return !missingList.includes(item);
+})
+// missing letter is an array so we have to return the value inside the array.
+   return missingLetter[0];
+}
+
+fearNotLetter("abce");
