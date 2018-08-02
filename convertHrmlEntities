@@ -1,0 +1,12 @@
+function convertHTML(str) {
+// use the string.prototype.replace method along with the required regex's
+  let newStr = str
+                  .replace(/&/g, "&amp;")
+                  .replace(/>/g, "&gt;")
+                  .replace(/</g, "&lt;")
+                  .replace(/"/g, "&quot;")
+                  .replace(/'/g, "&apos;");
+  return newStr;
+}
+
+convertHTML("Dolce & Gabbana");
