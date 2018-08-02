@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+
+// first try 
+let arr = str.split(" ");
+  str = arr.map((value){
+    switch (value) {
+      case "&":
+        value.replace("&","&amp");
+        break;
+      case "<":
+        value.replace("<","&lt");
+        break;
+      case ">":
+        value.replace(">","&gt");
+        break;
+      case "\"":
+        value.replace("\"","&quot");
+        break;
+      case "\'":
+      value.replace("\'","&apos");
+        break;
+      default:
+        break;
+    }
+  }).join(" ");
