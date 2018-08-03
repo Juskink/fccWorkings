@@ -1,0 +1,14 @@
+function sumFibs(num) {
+  let fibArr = [1];
+  let sum = 0;
+  for(let i=0;i<fibArr.length;i++){
+      if(fibArr[i] % 2 !=0){
+        sum += fibArr[i];
+      }
+  
+  }
+  console.log(sum)
+  return sum;
+}
+
+sumFibs(4);
