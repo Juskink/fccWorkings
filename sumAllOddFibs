@@ -1,3 +1,38 @@
+// full algorithm 1st attempt
+
+function sumFibs(num) {
+  let n1=1, n2=1, temp, sum = 0
+  let fibArr = [1];
+  // create an array of fibonacci numbers where the last no. is less than or equal to "num"
+  while(n1<=num){
+    if (num === 1){
+      continue;
+    } else{
+      temp = n2;
+      n2 = n1;
+      n1 = n2+temp;
+      fibArr.push(n1);
+    }
+    console.log(fibArr);
+  };
+
+  // after creating an array of the fibonacci numbers up to and including "num", pick out the odd ones and add them together.
+  
+  fibArr.map((value)=>{
+      if(value % 2 !=0){
+        sum += value;
+        }
+      return sum;
+  });
+  console.log(sum)
+  return sum;
+}
+
+sumFibs(4);
+
+
+/// first part
+
 function sumFibs(num) {
   let fibArr = [1];
   let sum = 0;
