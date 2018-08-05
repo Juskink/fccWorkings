@@ -1,0 +1,27 @@
+function sumPrimes(num) {
+  // create an array of numbers up to and including the number.
+  let arr = [];
+  for (let i=0;i<=num;i++){
+      arr.push(i);
+  }
+  // create a function that checks if a number is a prime number. Starts at 2 and ends before itself because everything including a prime is divisible by itself.
+  function isPrime(x) {
+    for(var i = 2; i < x; i++) {
+        if(x % i === 0) {
+            return false;
+        }
+    }
+    return x > 1;
+}
+// use the reduce method in orde to reduce the array down to a single number.!! make note of the syntax inside the reduce method.
+  let sum = arr.reduce((total,value)=>{
+    if(isPrime(value))
+    return total + value;
+    else return total;
+
+  });
+ 
+ return sum;
+}
+
+sumPrimes(10);
