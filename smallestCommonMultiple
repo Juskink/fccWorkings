@@ -1,0 +1,39 @@
+function smallestCommons(arr) {
+  // declare some high level variables to be used in the rest of the algorithm
+  let temp;
+  let arr1 = [];
+  // find the upper and lower limits of the range of the array using the min and max math functions and the spread operator
+  let min = Math.min(...arr);
+  let max = Math.max(...arr);
+  // create and array with the min and the max values
+  arr1.push(min);
+  arr1.push(max);
+  console.log(arr1);
+  // create a new array that starts at the lower end of the range (min) and fills the array with all the numbers up to and including the high end of the range.
+    let newArr =[];
+  for (let i = arr1[0]; i <= arr1[1];i++){
+    newArr.push(i);
+  }
+  // the greatest common denominator is found when the remainder is zero.
+  // note it doesnt matter what order the values are added. In sequence or not.
+  // the ternary operator is used to state that if b (the remainder from the previous step)is zero then a is the greatest common denominator otherwise the function is recursively called with the arguments swithced to b ins the first position and the remainder of a & b in the second position.
+  function gcd(a, b) {
+        return b===0 ? a : gcd(b, a % b);
+    }
+
+  function lcm(a, b) {
+        return (a * b) / gcd(a, b);   
+    }
+
+  var multiple = newArr[0];
+    newArr.forEach(function(n) {
+        multiple = lcm(multiple, n);
+    });
+
+
+  return multiple;
+}
+
+
+
+smallestCommons([1,5]);
