@@ -20,12 +20,13 @@ function smallestCommons(arr) {
   function gcd(a, b) {
         return b===0 ? a : gcd(b, a % b);
     }
-
+// The lowest common multiple function just returns the answer to the formula for the lcm usin the gcd(greatest common denominator function)
   function lcm(a, b) {
         return (a * b) / gcd(a, b);   
     }
-
+// a new variable is created using the smallest end of the range of numbers to be tested.
   var multiple = newArr[0];
+  // this is again a recursive function which uses the lcm of the previous number in the range with the next number up to and including the last number in the range. the forEach method provides a single answer for each of the values in the array but the last answer is the only answer we are interested in in this case.
     newArr.forEach(function(n) {
         multiple = lcm(multiple, n);
     });
@@ -33,7 +34,5 @@ function smallestCommons(arr) {
 
   return multiple;
 }
-
-
 
 smallestCommons([1,5]);
