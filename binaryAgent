@@ -1,0 +1,16 @@
+function binaryAgent(str) {
+// solit the whole string up into an array of numbers
+// and parse the string to a number to the base of 2.
+  let arr = str.split(" ").map((value)=>{
+    return parseInt(value,2); 
+  });
+  //change each of the values to a character and then join all the characters together.
+  let arr1 = arr.map((n)=>{
+    return String.fromCharCode(n);
+  }).join("") 
+  console.log(arr1) 
+  
+  return arr1;
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
