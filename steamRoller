@@ -1,0 +1,13 @@
+function steamrollArray(arr) {
+
+// create and empty array and concatonate the values of arr
+let flatter = [].concat(...arr);
+// use the ternary operatot to and the some() to check if any of the values are arrays themselves
+// if this is the case then recursively call the function again to flatten it further
+// if not return the array "flatter"
+  return flatter.some(Array.isArray) ? steamrollArray(flatter) : flatter;
+}
+
+    
+
+steamrollArray([1, [2], [3, [[4]]]]);
