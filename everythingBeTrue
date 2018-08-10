@@ -1,0 +1,20 @@
+function truthCheck(collection, pre) {
+// start to add in the strict notation as a force of habit
+  "use strict";
+  // create an array of values that refer to the 2nd argument property (pre) for each object in the array
+  var arr = collection.map((value) => {
+    return value[pre];
+  });
+  // check whether or not each of these elements are truthy or falsy
+let answer = true;
+ for (let i = 0;i<arr.length;i++){
+   if(arr[i]){
+     continue;
+   }else{
+     answer = false;
+     return false;
+   }
+ }
+  console.log(answer); 
+  return answer;
+}
