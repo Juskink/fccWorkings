@@ -1,0 +1,22 @@
+function addTogether(num1, num2) {
+  // the first thing to know is that "functionName (value1)(value2)" means that the value 2 is for a function nested in the original function.
+  // line 8-12 show this nested function.
+
+  if(arguments.length == 2 && (typeof num1 == "number"  && typeof num2 == "number"))
+  return num1 + num2;
+  else if(arguments.length == 1 && typeof num1 == "number" ){
+      return function(num2){
+        if (typeof num2 == "number"){
+          return num1 + num2;
+        }else {
+          return undefined;
+        }
+          
+      }
+  }else {
+    return undefined;
+  }
+ 
+}
+
+addTogether(2,3);
