@@ -2,6 +2,44 @@ function whatIsInAName(collection, source) {
   // What's in a name?
   var arr = [];
   // Only change code below this line
+  
+
+    function matchingNameAndValue (obj){
+      // array created of source keys
+      let keys = Object.keys(source)
+      //variable for the length of this array showing how many keys we have.
+      let len = keys.length;
+      // create loop to check the conditions for each of the key valuees
+      for (let i=0;i<len;i++) {
+        let key = keys[i];
+
+        console.log('key: ' + key)
+        console.log('exp val: ' + source[key])
+        console.log('actual val: ' + obj[key])
+        // use the negative so that if any of the conditons are not true then jump out of the call back function for that value within the filter expression.
+        if((!obj.hasOwnProperty(key)) || (obj[key] != source[key])){
+          return false;
+        }
+      } 
+      // !! MAKE SURE YOU RETURN STATEMENT IS NOT IN THE LOOP IF ITS NOT MEANT TO BE.
+      return true;
+    }
+ arr =  collection.filter(matchingNameAndValue);
+console.log(arr);
+  
+  // Only change code above this line
+  return arr;
+}
+
+
+
+// THIS WAS THE FIRST ATTEMPT WITH A POSITIVE CONDITION.
+
+
+function whatIsInAName(collection, source) {
+  // What's in a name?
+  var arr = [];
+  // Only change code below this line
 
   function matchingNameAndValue (object){
 
