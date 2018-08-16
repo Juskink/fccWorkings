@@ -1,0 +1,23 @@
+function palindrome(str) {
+// create regex that filters out all non alphanumeric characters and "_".
+  let regex = /[\W_]+|/gi;
+  // create a new string where the regex is replaced by nothing and convert everything to uppercase.
+  let newStr = str.replace(regex,"").toUpperCase();
+  // also create a function to reverse a string.
+  function reverse(str){
+    return str.split("").reverse().join("").toUpperCase();
+  }
+  // now call the function for the newString with the non alphanumerical numbers removed.
+  let reversedString = reverse(newStr);
+  console.log(newStr, "new string");
+  console.log(reversedString, "reversed string");
+  // now use the "localeCompare() method to check if the strings are the same.
+  if (newStr.localeCompare(reversedString) == 0){
+    return true;
+  }
+return false;
+}
+
+
+
+palindrome("eye");
