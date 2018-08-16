@@ -1,11 +1,15 @@
 function convertToRoman(num) {
+  // create a multidimensional array for the types ones, tens, hundreds 
+  // and oh yeah don't forget the thousands - NOTE FROM 4000 ON THESE ARE NOT THE CORRECT SYMBOLS
   let roman = [
     ["I","II","III","IV","V","VI","VII","VIII","IX"],
     ["X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
-    ["C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]
+    ["C","CC","CCC","CD","D","DC","DCC","DCCC","CM"],
+    ["M","MM","MMM","MMMM","Vi","VM","VMM","VMMM","VMMMM"]
     ];
 
   var digits = (""+num).split("").reverse();
+
   if (digits.length == 1){
     num = digits[0] == 0 ? "" : roman[0][digits[0]-1];
   }else if (digits.length == 2){
@@ -13,12 +17,8 @@ function convertToRoman(num) {
   }else if (digits.length == 3){
     num = (digits[2] == 0 ? "" :roman[2][digits[2]-1]) + (digits[1] == 0 ? "" :roman[1][digits[1]-1]) + (digits[0] == 0 ? "" :roman[0][digits[0]-1]);
   }else if (digits.length == 4){
-    console.log(digits[3]);
-    console.log(digits[2]);
-    console.log(digits[1]);
-    console.log(digits[0]);
     num = (digits[3] == 0 ? "" :roman[3][digits[3]-1]) + (digits[2] == 0 ? "" :roman[2][digits[2]-1]) + (digits[1] == 0 ? "" :roman[1][digits[1]-1]) + (digits[0] == 0 ? "" :roman[0][digits[0]-1]);
-    console.log(num);
+    
   }
   return num;
 }
