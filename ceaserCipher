@@ -1,19 +1,24 @@
 function rot13(str) {
-
+// the test only uses capital letters but the input and output could be extended with small letters aswell.
+// entering the letters with a string and then splitting them into an array of characters is a convienint way of not typing out the arrays.
 var input = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
 var output = "NOPQRSTUVWXYZABCDEFGHIJKLM ";
 var inputArr = input.split("");
 var outputArr = output.split("");
-
+// the argument is then also split into an array.
 var strArr = str.split("");
-console.log(strArr);
+
 var newArr = [];
+// a regex is created in order to filter out any non-alphanumeric numbers except whitespaces.
 var regex = /[^a-zA-Z0-9\s]/gi;
 for (let i=0;i<strArr.length;i++){
+    // if the character in the array is a non-alphanumeric then add it directly to the new array.
     if(regex.test(strArr[i])){
         newArr.push(strArr[i]);
     }else {
+    // otherwise get the position of the character in the input array
         var position = input.indexOf(strArr[i]);
+    // now using that position/index in the input array use that to get the character in that position in the output array and push() it onto the new array.
     newArr.push(output[position]);
     }
     
