@@ -1,3 +1,5 @@
+/// my solution
+
 function palindrome(str) {
 // create regex that filters out all non alphanumeric characters and "_".
   let regex = /[\W_]+|/gi;
@@ -21,3 +23,11 @@ return false;
 
 
 palindrome("eye");
+
+// a far more code efficient solution
+// after the split() is used on the string the reverse() is used on the resulting array and the join is then used to convert the array back into 
+// a string.
+function palindrome(str) {
+  return str.replace(/[\W_]/g, '').toLowerCase() ===
+         str.replace(/[\W_]/g, '').toLowerCase().split('').reverse().join('');
+}
