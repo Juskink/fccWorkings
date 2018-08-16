@@ -1,0 +1,9 @@
+\\ this is my first effort - brackets around the area code are giving me problems
+
+function telephoneCheck(str) {
+  var regex = /1?[\s-]?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}/ ;
+  var result = regex.test(str);
+  return result;
+}
+
+telephoneCheck("555-555-5555");
