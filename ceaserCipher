@@ -6,20 +6,19 @@ var inputArr = input.split("");
 var outputArr = output.split("");
 
 var strArr = str.split("");
+console.log(strArr);
 var newArr = [];
+var regex = /[^a-zA-Z0-9\s]/gi;
 for (let i=0;i<strArr.length;i++){
-    if(strArr[i]==/[\W+_]/){
+    if(regex.test(strArr[i])){
         newArr.push(strArr[i]);
-    }
-    var position = input.indexOf(strArr[i]);
-
+    }else {
+        var position = input.indexOf(strArr[i]);
     newArr.push(output[position]);
+    }
+    
 }
 
 var newStr = newArr.join("");
-console.log(newStr);
   return newStr ;
 }
-
-// Change the inputs below to test
-rot13("SERR PBQR PNZC");
