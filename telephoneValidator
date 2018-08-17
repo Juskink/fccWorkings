@@ -1,9 +1,9 @@
-\\ this is my first effort - brackets around the area code are giving me problems
+\\ this is the second attempt with still 3 tests failing
+\\ what is changed is the ^ at the start and the $ at the back to ensure that these validations are correct
+\\ the three remaining tests relate to only having one bracket around the first three numbers
 
 function telephoneCheck(str) {
-  var regex = /1?[\s-]?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}/ ;
+  var regex = /^1*\s?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}$/;
   var result = regex.test(str);
   return result;
 }
-
-telephoneCheck("555-555-5555");
