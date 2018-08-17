@@ -1,9 +1,12 @@
-\\ this is the second attempt with still 3 tests failing
 \\ what is changed is the ^ at the start and the $ at the back to ensure that these validations are correct
 \\ the three remaining tests relate to only having one bracket around the first three numbers
+\\ a capture element was added to the first set of 3 numbers in order to be able to use the pipe/or/alternation/vertical bar
+\\ so it would only capture 3 numbers or 3 numbers with brackets on both sides.
 
 function telephoneCheck(str) {
-  var regex = /^1*\s?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}$/;
+  var regex = /^1*\s?(\(\d{3}\)|\d{3})[-\s]?\d{3}[-\s]?\d{4}$/
   var result = regex.test(str);
   return result;
 }
+
+telephoneCheck("555-555-5555");
