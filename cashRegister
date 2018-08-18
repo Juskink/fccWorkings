@@ -1,11 +1,12 @@
 function checkCashRegister(price, cash, cid) {
-
+  // declare the various variables required 
   var changeDue = cash - price;
   var availableChange = [];
   var totalCash = totalOfNestedArray(cid);
   var value;
  
   // this is an array of change from which change can be made.
+  //THIS SHOULD REALLY BE REMOVED AND REPLACED WITH A MORE ROBUST SOLUTION
   availableChange = cid.filter((value) => {
     return value[1]<changeDue && value[1] > 0;
   });
@@ -55,32 +56,23 @@ function checkCashRegister(price, cash, cid) {
     return value;
   }
 
-  value = valueFromString(cid[3][0]);
+  function getExactChange (chng,drawer) {
+    for (let i=drawer.length-1;i>=0;i--){
+      for (let j=0;j<drawer[i]<length;j++){
+        
+      }
 
+    }
+  }
 
-  // 
   if (totalCash < changeDue){
     return {status: "INSUFFICIENT_FUNDS", change: []} ;
   }else if(totalCash == changeDue){
     return {status: "CLOSED", change: [...cid]}
   }else if (totalCash > changeDue && totalAvailableChange < changeDue){
     return {status: "INSUFFICIENT_FUNDS", change: []} ;
+  }else if (totalCash> changeDue && totalAvailableChange > changeDue){
+    return getExactChange(changeDue,cid);
   }
-
-  
-  
  
 }
-
-// Example cash-in-drawer array:
-// [["PENNY", 1.01],
-// ["NICKEL", 2.05],
-// ["DIME", 3.1],
-// ["QUARTER", 4.25],
-// ["ONE", 90],
-// ["FIVE", 55],
-// ["TEN", 20],
-// ["TWENTY", 60],
-// ["ONE HUNDRED", 100]]
-
-checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
