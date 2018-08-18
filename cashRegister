@@ -1,0 +1,86 @@
+function checkCashRegister(price, cash, cid) {
+
+  var changeDue = cash - price;
+  var availableChange = [];
+  var totalCash = totalOfNestedArray(cid);
+  var value;
+ 
+  // this is an array of change from which change can be made.
+  availableChange = cid.filter((value) => {
+    return value[1]<changeDue && value[1] > 0;
+  });
+
+  // this is the total amount of change available from which exact change can possibly be made.
+  var totalAvailableChange = totalOfNestedArray(availableChange);
+  
+ // this is a function of getting the total of array of arrays
+  function totalOfNestedArray (arr) {
+    var total = arr.reduce((accum,nestedArr)=>{
+      return accum + nestedArr[1];
+    },0);
+    var roundTotal = total.toFixed(2);
+    return roundTotal;
+  }
+
+  function valueFromString (str){
+    switch (str) {
+    case "PENNY":
+        value = .01;
+        break; 
+    case "NICKEL":
+        value = .05;
+        break; 
+     case "DIME":
+        value = .10;
+        break; 
+    case "QUARTER":
+        value = .25;
+        break; 
+     case "ONE":
+        value = 1;
+        break; 
+    case "FIVE":
+        value = 5;
+        break; 
+     case "TEN":
+        value = 10;
+        break; 
+    case "TWENTY":
+        value = 20;
+        break; 
+     case "HUNDRED":
+        value = 100;
+        break; 
+    }
+    return value;
+  }
+
+  value = valueFromString(cid[3][0]);
+
+
+  // 
+  if (totalCash < changeDue){
+    return {status: "INSUFFICIENT_FUNDS", change: []} ;
+  }else if(totalCash == changeDue){
+    return {status: "CLOSED", change: [...cid]}
+  }else if (totalCash > changeDue && totalAvailableChange < changeDue){
+    return {status: "INSUFFICIENT_FUNDS", change: []} ;
+  }
+
+  
+  
+ 
+}
+
+// Example cash-in-drawer array:
+// [["PENNY", 1.01],
+// ["NICKEL", 2.05],
+// ["DIME", 3.1],
+// ["QUARTER", 4.25],
+// ["ONE", 90],
+// ["FIVE", 55],
+// ["TEN", 20],
+// ["TWENTY", 60],
+// ["ONE HUNDRED", 100]]
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
