@@ -1,3 +1,26 @@
+
+// second attempt at change function
+
+// a function for finding the exact change 
+// this will have two for loops and go from the highest value in the array to the bottom.
+   function getExactChange (chng,drawer) {
+    for (let i=drawer.length-1;i>=0;i--){
+      // do i need a second loop if i always know that the nested array contains 2 elements.
+      for (let j=0;j<drawer[i].length;j++){
+        var currency = valueFromString(drawer[i][0]);
+        var totalCurrency = drawer[i][1];
+        var givenChange = 0;
+        if (chng>currency && chng > totalCurrency) {
+          chng -= currency;
+          totalCurrency -= currency;
+          givenChange += currency;
+          
+        }
+      }
+
+    }
+  }
+
 function checkCashRegister(price, cash, cid) {
   // declare the various variables required 
   var changeDue = cash - price;
