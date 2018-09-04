@@ -1,73 +1,49 @@
 function checkCashRegister(price, cash, cid) {
 
   var changeDue = cash - price;
+  console.log(changeDue, "change due");
   var availableChange = [];
-  var totalCash = totalOfNestedArray(cid);
+  var totalCash = sumNestedArray(cid);
   var value;
 
-  // this is a function to get the totalcash in the drawer
-  function totalOfNestedArray (arr) {
-    var total = arr.reduce((accum,nestedArr)=>{
-      return accum + nestedArr[1];
+  // this is the function that will be used to sum the second value of the various nested arrays.
+  function sumNestedArray (arr){
+    return arr.reduce((accum,current)=>{
+      return accum+current[1];
     },0).toFixed(2);
-
- 
-  // this is an array of change from which change can be made.
+  }
+  
+  
+   // this is an array of the amount of change in the drawer from which change can be made. it takes out all the values which are greater than the change to be given
   availableChange = cid.filter((value) => {
     return value[1]<changeDue && value[1] > 0;
   });
+  let totalAvailableChange = sumNestedArray(availableChange);
 
-  // this is the total amount of change available from which exact change can possibly be made.
-  var totalAvailableChange = totalOfNestedArray(availableChange);
-  
-   
-  function valueFromString (str){
-    switch (str) {
-    case "PENNY":
-        value = .01;
-        break; 
-    case "NICKEL":
-        value = .05;
-        break; 
-     case "DIME":
-        value = .10;
-        break; 
-    case "QUARTER":
-        value = .25;
-        break; 
-     case "ONE":
-        value = 1;
-        break; 
-    case "FIVE":
-        value = 5;
-        break; 
-     case "TEN":
-        value = 10;
-        break; 
-    case "TWENTY":
-        value = 20;
-        break; 
-     case "HUNDRED":
-        value = 100;
-        break; 
-    }
-    return value;
-  }
 
 
   if (totalCash < changeDue){
     return {status: "INSUFFICIENT_FUNDS", change: []} ;
   }else if(totalCash == changeDue){
-    return {status: "CLOSED", change: [...cid]}
+    return {status: "CLOSED", change: [...cid]};
   }else if (totalCash > changeDue && totalAvailableChange < changeDue){
     return {status: "INSUFFICIENT_FUNDS", change: []} ;
   }else {
     return console.log("this is the open end");
   }
 
-  }
-
-  
-  
  
 }
+
+// Example cash-in-drawer array:
+// [["PENNY", 1.01],
+// ["NICKEL", 2.05],
+// ["DIME", 3.1],
+// ["QUARTER", 4.25],
+// ["ONE", 90],
+// ["FIVE", 55],
+// ["TEN", 20],
+// ["TWENTY", 60],
+// ["ONE HUNDRED", 100]]
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
