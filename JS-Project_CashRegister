@@ -4,8 +4,21 @@ function checkCashRegister(price, cash, cid) {
   console.log(changeDue, "change due");
   var availableChange = [];
   var totalCash = sumNestedArray(cid);
-  var value;
-  
+  var valuesArr = [];
+  var changeArr = [];
+  var remainingChange = changeDue;
+  var changeGiven = 0;
+  var money = [
+    ["PENNY",0.01],
+    ["NICKEL",0.05],
+    ["DIME",0.1],
+    ["QUARTER",0.25],
+    ["ONE",1],
+    ["FIVE",5],
+    ["TEN",10],
+    ["TWENTY",20],
+    ["ONE HUNDRED",100],
+  ]
   
   
   
