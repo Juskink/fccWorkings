@@ -5,6 +5,11 @@ function checkCashRegister(price, cash, cid) {
   var availableChange = [];
   var totalCash = sumNestedArray(cid);
   var value;
+  
+  
+  
+  
+  
 
   // this is the function that will be used to sum the second value of the various nested arrays.
   function sumNestedArray (arr){
