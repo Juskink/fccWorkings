@@ -20,7 +20,59 @@ function checkCashRegister(price, cash, cid) {
   });
   let totalAvailableChange = sumNestedArray(availableChange);
 
-
+  cid.forEach( function (element,index) {
+    var value;
+    var amount;
+    switch (element[0]) {
+      case "PENNY":
+          value = .01;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+      case "NICKEL":
+          value = .05;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+      case "DIME":
+          value = .10;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+      case "QUARTER":
+          value = .25;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+      case "ONE":
+          value = 1;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+      case "FIVE":
+          value = 5;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+      case "TEN":
+          value = 10;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+      case "TWENTY":
+          value = 20;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+      case "HUNDRED":
+          value = 100;
+          amount = (element[1]/value).toFixed(2);
+          valuesArr.push([value,amount]);
+          break; 
+    }
+  });
+  
+  console.log(valuesArr, "values array");
 
   if (totalCash < changeDue){
     return {status: "INSUFFICIENT_FUNDS", change: []} ;
