@@ -1,92 +1,138 @@
 function checkCashRegister(price, cash, cid) {
-
-  var changeDue = cash - price;
-  console.log(changeDue, "change due");
+  var priceInPennies = price*100;
+  var cashInPennies = cash*100;
+  var changeDue = cashInPennies - priceInPennies;
   var availableChange = [];
-  var totalCash = sumNestedArray(cid);
-  var value;
-  
-  
-  
-  
-  
+  var valuesArr = [];
+  var changeArr = [];
+  var remainingChange = changeDue;
+  var changeGiven = 0;
+  var money = [
+    ["PENNY",1],
+    ["NICKEL",5],
+    ["DIME",10],
+    ["QUARTER",25],
+    ["ONE",100],
+    ["FIVE",500],
+    ["TEN",1000],
+    ["TWENTY",2000],
+    ["ONE HUNDRED",10000],
+  ]
+
+  //create initial array where the values in the cid array are multiplied by 100 in order to change everything to pennies and to hope avoid the NUMBER DIVISION ERROR.
+  let cidInPennies = cid.map((num) => {
+    return [num[0],Math.round((num[1]*100))]
+  });
+
+ // totalCash variable is being created from the sum of the newly cid with everything changed to pennies.
+  var totalCash = sumNestedArray(cidInPennies);
 
   // this is the function that will be used to sum the second value of the various nested arrays.
   function sumNestedArray (arr){
     return arr.reduce((accum,current)=>{
       return accum+current[1];
-    },0).toFixed(2);
+    },0);
   }
   
-  
-   // this is an array of the amount of change in the drawer from which change can be made. it takes out all the values which are greater than the change to be given
-  availableChange = cid.filter((value) => {
-    return value[1]<changeDue && value[1] > 0;
-  });
-  let totalAvailableChange = sumNestedArray(availableChange);
 
-  cid.forEach( function (element,index) {
+
+
+cidInPennies.forEach( function (element,index) {
     var value;
     var amount;
     switch (element[0]) {
       case "PENNY":
-          value = .01;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+          value = 1;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"PENNY"]);
           break; 
       case "NICKEL":
-          value = .05;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+          value = 5;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"NICKEL"]);
           break; 
       case "DIME":
-          value = .10;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+          value = 10;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"DIME"]);
           break; 
       case "QUARTER":
-          value = .25;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+          value = 25;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"QUARTER"]);
           break; 
       case "ONE":
-          value = 1;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+          value = 100;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"ONE"]);
           break; 
       case "FIVE":
-          value = 5;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+          value = 500;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"FIVE"]);
           break; 
       case "TEN":
-          value = 10;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+          value = 1000;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"TEN"]);
           break; 
       case "TWENTY":
-          value = 20;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+          value = 2000;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"TWENTY"]);
           break; 
-      case "HUNDRED":
-          value = 100;
-          amount = (element[1]/value).toFixed(2);
-          valuesArr.push([value,amount]);
+      case "ONE HUNDRED":
+          value = 10000;
+          amount = Number((element[1]/value));
+          valuesArr.push([value,amount,"ONE HUNDRED"]);
           break; 
     }
   });
+    
+      // this is an array of the amount of change in the drawer from which change can be made. it takes out all the values which are greater than the change to be given
   
-  console.log(valuesArr, "values array");
 
+  //availableChange = valuesArr.filter((value) => {
+   // return value[0]<changeDue && value[1] > 0;
+ // }).map((value)=>{
+   // return value[1]=value[0]*value[1]; 
+  //});
+ 
+  
+  let totalAvailableChange = 100000;
+  
+   
+  for(let i=valuesArr.length-1;i>=0;i--){
+    let count =0;
+    let changePerUnit =0;
+    while(valuesArr[i][0]<= remainingChange && changeGiven < changeDue && valuesArr[i][1] >0 ){
+      valuesArr[i][1] -= 1;
+      // count is being added to keep track from which currency unit change is being given.
+      count += 1
+      changeGiven += valuesArr[i][0];
+      changePerUnit +=valuesArr[i][0];
+      remainingChange -= valuesArr[i][0];
+      //console.log(remainingChange,changeGiven,valuesArr[i][1]);
+    }
+    // when the count is above zero this means that change has been given 
+    if (count>0){
+      changeArr.push([valuesArr[i][2],changePerUnit/100])
+    }
+    changePerUnit = 0;
+    count = 0;
+  }
+
+  
+ 
   if (totalCash < changeDue){
     return {status: "INSUFFICIENT_FUNDS", change: []} ;
   }else if(totalCash == changeDue){
-    return {status: "CLOSED", change: [...cid]};
+    return {status: "CLOSED", change: cid};
   }else if (totalCash > changeDue && totalAvailableChange < changeDue){
     return {status: "INSUFFICIENT_FUNDS", change: []} ;
   }else {
-    return console.log("this is the open end");
+    console.log([changeArr])
+    return {status: "OPEN", change: changeArr};
   }
 
  
