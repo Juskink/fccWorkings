@@ -96,10 +96,16 @@ cidInPennies.forEach( function (element,index) {
   let totalAvailableChange = sumNestedArray(availableChange);
 
   
-   
+   // the for loop is moving from the top of the cidInPennies array so that the new change array can be created
+   // top down as this is a requirement of the challenge
   for(let i=valuesArr.length-1;i>=0;i--){
+    // a count is initiated in order to monitor in the sub arrays when change is given
     let count =0;
+    // changePer monetary unit is a way of collecting the amount of change per monetary unit. (this could probably replace count above)
     let changePerUnit =0;
+    // the while loop states that the currencyunit of the array has to be less than the remaining change
+    // that the change already given has to be less than the total change due
+    // and the amount of currencyunit coins is greater than 0.
     while(valuesArr[i][0]<= remainingChange && changeGiven < changeDue && valuesArr[i][1] >0 ){
       valuesArr[i][1] -= 1;
       // count is being added to keep track from which currency unit change is being given.
