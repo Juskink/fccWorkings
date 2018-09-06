@@ -7,24 +7,15 @@ function checkCashRegister(price, cash, cid) {
   var changeArr = [];
   var remainingChange = changeDue;
   var changeGiven = 0;
-  var money = [
-    ["PENNY",1],
-    ["NICKEL",5],
-    ["DIME",10],
-    ["QUARTER",25],
-    ["ONE",100],
-    ["FIVE",500],
-    ["TEN",1000],
-    ["TWENTY",2000],
-    ["ONE HUNDRED",10000],
-  ]
+  var exactChangearr = [];
 
-  //create initial array where the values in the cid array are multiplied by 100 in order to change everything to pennies and to hope avoid the NUMBER DIVISION ERROR.
+
+  //create initial array where the values in the cid array are multiplied by 100 in order to change everything to pennies and to avoid floating point division error.
   let cidInPennies = cid.map((num) => {
     return [num[0],Math.round((num[1]*100))]
   });
 
- // totalCash variable is being created from the sum of the newly cid with everything changed to pennies.
+ // totalCash variable is being created from the sum of the newly created cidInPennies with everything changed to pennies.
   var totalCash = sumNestedArray(cidInPennies);
 
   // this is the function that will be used to sum the second value of the various nested arrays.
@@ -34,9 +25,8 @@ function checkCashRegister(price, cash, cid) {
     },0);
   }
   
-
-
-
+ 
+// in this for each method a new array is created to store the numerical values of "PENNIES" etc along with the amount of currency unit.The string name has been added aswell as this will make it easier to make the change array.
 cidInPennies.forEach( function (element,index) {
     var value;
     var amount;
@@ -45,61 +35,66 @@ cidInPennies.forEach( function (element,index) {
           value = 1;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"PENNY"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
       case "NICKEL":
           value = 5;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"NICKEL"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
       case "DIME":
           value = 10;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"DIME"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
       case "QUARTER":
           value = 25;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"QUARTER"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
       case "ONE":
           value = 100;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"ONE"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
       case "FIVE":
           value = 500;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"FIVE"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
       case "TEN":
           value = 1000;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"TEN"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
       case "TWENTY":
           value = 2000;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"TWENTY"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
       case "ONE HUNDRED":
           value = 10000;
           amount = Number((element[1]/value));
           valuesArr.push([value,amount,"ONE HUNDRED"]);
+          exactChangearr.push([value,(amount*value)]);
           break; 
     }
   });
     
-      // this is an array of the amount of change in the drawer from which change can be made. it takes out all the values which are greater than the change to be given
-  
+     // this is an array of the amount of change in the drawer from which change can be made. it takes out all the values which are greater than the change to be given
+  availableChange = exactChangearr.filter((nest) => {
+  return nest[0]<changeDue;
+ });
 
-  //availableChange = valuesArr.filter((value) => {
-   // return value[0]<changeDue && value[1] > 0;
- // }).map((value)=>{
-   // return value[1]=value[0]*value[1]; 
-  //});
- 
-  
-  let totalAvailableChange = 100000;
+  let totalAvailableChange = sumNestedArray(availableChange);
+
   
    
   for(let i=valuesArr.length-1;i>=0;i--){
